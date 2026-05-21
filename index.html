@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FocusVerse Pro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+:root{
+--bg:#050505;
+--card:#111111;
+--text:#ffffff;
+--green:#00ff88;
+--border:rgba(255,255,255,.08);
+}
+
+body.light{
+--bg:#f3f3f3;
+--card:#ffffff;
+--text:#111111;
+--border:rgba(0,0,0,.1);
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+transition:.3s;
+}
+
+nav{
+width:100%;
+padding:18px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(10px);
+}
+
+.logo{
+font-size:30px;
+font-weight:900;
+color:var(--green);
+}
+
+.nav-btns{
+display:flex;
+gap:10px;
+}
+
+button{
+border:none;
+cursor:pointer;
+transition:.3s;
+font-weight:700;
+}
+
+.btn{
+padding:12px 20px;
+border-radius:12px;
+background:var(--green);
+color:black;
+}
+
+.btn:hover{
+transform:translateY(-4px);
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:60px 6%;
+}
+
+.hero h1{
+font-size:90px;
+font-weight:900;
+line-height:1.1;
+}
+
+.green{
+color:var(--green);
+}
+
+.hero p{
+max-width:750px;
+margin:auto;
+margin-top:25px;
+line-height:1.8;
+opacity:.8;
+font-size:18px;
+}
+
+.motivation{
+margin-top:30px;
+font-size:20px;
+font-weight:600;
+color:var(--green);
+line-height:1.8;
+}
+
+.section{
+padding:90px 6%;
+}
+
+.title{
+font-size:48px;
+font-weight:800;
+margin-bottom:40px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.card{
+background:var(--card);
+border:1px solid var(--border);
+padding:30px;
+border-radius:25px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:var(--green);
+}
+
+.icon{
+font-size:40px;
+margin-bottom:20px;
+}
+
+.feature-btn{
+margin-top:20px;
+width:100%;
+}
+
+.clock-box{
+text-align:center;
+background:var(--card);
+padding:50px;
+border-radius:30px;
+border:1px solid var(--border);
+}
+
+#clock{
+font-size:70px;
+font-weight:900;
+color:var(--green);
+}
+
+.quote{
+margin-top:15px;
+font-size:18px;
+opacity:.8;
+}
+
+.login-box{
+max-width:500px;
+margin:auto;
+background:var(--card);
+padding:40px;
+border-radius:30px;
+border:1px solid var(--border);
+}
+
+#monkey{
+font-size:90px;
+text-align:center;
+margin-bottom:20px;
+transition:.3s;
+}
+
+input,textarea{
+width:100%;
+padding:16px;
+margin-top:18px;
+border-radius:14px;
+border:1px solid var(--border);
+background:transparent;
+color:var(--text);
+outline:none;
+}
+
+textarea{
+min-height:180px;
+resize:none;
+}
+
+.profile{
+display:none;
+}
+
+.profile-card{
+background:var(--card);
+padding:30px;
+border-radius:25px;
+border:1px solid var(--border);
+}
+
+.streak{
+font-size:65px;
+font-weight:900;
+color:var(--green);
+margin-top:15px;
+}
+
+.task{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px;
+margin-top:15px;
+border-radius:15px;
+background:rgba(255,255,255,.04);
+border:1px solid var(--border);
+gap:10px;
+}
+
+.task p{
+font-weight:600;
+}
+
+.task button{
+padding:10px 16px;
+border-radius:10px;
+background:var(--green);
+}
+
+.history-item{
+padding:15px;
+margin-top:12px;
+border-radius:12px;
+background:rgba(255,255,255,.04);
+}
+
+#adminPanel{
+display:none;
+}
+
+footer{
+padding:40px;
+text-align:center;
+opacity:.7;
+border-top:1px solid var(--border);
+}
+
+@media(max-width:800px){
+
+.hero h1{
+font-size:55px;
+}
+
+.title{
+font-size:36px;
+}
+
+#clock{
+font-size:45px;
+}
+
+.streak{
+font-size:45px;
+}
+
+.task{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.task button{
+width:100%;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+
+<div class="logo">
+FOCUSVERSE
+</div>
+
+<div class="nav-btns">
+<button class="btn" onclick="toggleTheme()">🌗 Theme</button>
+<button class="btn" onclick="showProfile()">👤 Profile</button>
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div>
+
+<h1>
+STUDY.<br>
+<span class="green">FOCUS.</span><br>
+WIN.
+</h1>
+
+<p>
+A futuristic productivity platform with working login system,
+real streak tracking, task history, profile dashboard,
+dark/light mode and motivation system.
+</p>
+
+<div class="motivation">
+“Small daily progress creates massive success.” 🔥
+<br><br>
+“Discipline today becomes success tomorrow.” 🚀
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="title">
+Awesome <span class="green">Features</span>
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">🌗</div>
+<h3>Dark / Light Vibes</h3>
+<p>
+Premium futuristic aesthetic design with smooth neon glow.
+</p>
+
+<button class="btn feature-btn" onclick="toggleTheme()">
+Open Feature
+</button>
+</div>
+
+<div class="card">
+<div class="icon">🔥</div>
+<h3>Daily Streak</h3>
+<p>
+Maintain your productivity streak and stay consistent.
+</p>
+
+<button class="btn feature-btn" onclick="scrollSection('profileSection')">
+Open Feature
+</button>
+</div>
+
+<div class="card">
+<div class="icon">📝</div>
+<h3>Private Notes</h3>
+<p>
+Your notes and tasks remain private and secure.
+</p>
+
+<button class="btn feature-btn" onclick="scrollSection('notesSection')">
+Open Feature
+</button>
+</div>
+
+<div class="card">
+<div class="icon">🔒</div>
+<h3>Secure Login</h3>
+<p>
+Users can login and save their productivity progress.
+</p>
+
+<button class="btn feature-btn" onclick="scrollSection('loginSection')">
+Open Feature
+</button>
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="clock-box">
+
+<div id="clock">
+00:00:00
+</div>
+
+<div class="quote" id="quote">
+Discipline beats motivation.
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="loginSection">
+
+<h2 class="title">
+Login <span class="green">Portal</span>
+</h2>
+
+<div class="login-box">
+
+<div id="monkey">
+🐵
+</div>
+
+<input type="text" id="username" placeholder="Create Username">
+
+<input type="password" id="password" placeholder="Create Password">
+
+<button class="btn" style="width:100%;margin-top:20px;" onclick="loginUser()">
+Login / Register
+</button>
+
+</div>
+
+</section>
+
+<section class="section profile" id="profileSection">
+
+<h2 class="title">
+Your <span class="green">Profile</span>
+</h2>
+
+<div class="profile-card">
+
+<h2 id="profileName">
+User
+</h2>
+
+<p id="profileId">
+User ID
+</p>
+
+<div class="streak" id="streakCount">
+0 DAYS 🔥
+</div>
+
+<p style="margin-top:15px;">
+Stay consistent every day to increase your streak.
+</p>
+
+</div>
+
+<div class="profile-card" style="margin-top:30px;">
+
+<h3>
+Task History
+</h3>
+
+<div id="historyBox"></div>
+
+</div>
+
+</section>
+
+<section class="section" id="notesSection">
+
+<h2 class="title">
+Private <span class="green">Notes</span>
+</h2>
+
+<div class="card">
+
+<textarea id="notes" placeholder="Write your notes here..."></textarea>
+
+<button class="btn" style="margin-top:20px;" onclick="saveNotes()">
+Save Notes
+</button>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="title">
+Daily <span class="green">Tasks</span>
+</h2>
+
+<div class="card">
+
+<div class="task">
+<p>Complete Math Revision</p>
+<button onclick="completeTask('Complete Math Revision')">
+Done
+</button>
+</div>
+
+<div class="task">
+<p>Practice Coding</p>
+<button onclick="completeTask('Practice Coding')">
+Done
+</button>
+</div>
+
+<div class="task">
+<p>Read GK Notes</p>
+<button onclick="completeTask('Read GK Notes')">
+Done
+</button>
+</div>
+
+<div class="task">
+<p>Learn English Speaking</p>
+<button onclick="completeTask('Learn English Speaking')">
+Done
+</button>
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="adminPanel">
+
+<h2 class="title">
+Admin <span class="green">Panel</span>
+</h2>
+
+<div class="profile-card">
+
+<h3>Total Users</h3>
+
+<p id="totalUsers">
+0
+</p>
+
+</div>
+
+<div class="profile-card" style="margin-top:30px;">
+
+<h3>Registered Users</h3>
+
+<div id="userList"></div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 FocusVerse Pro
+</footer>
+
+<script>
+
+// THEME
+
+function toggleTheme(){
+
+document.body.classList.toggle('light');
+
+localStorage.setItem(
+'theme',
+document.body.classList.contains('light')
+? 'light'
+: 'dark'
+);
+
+}
+
+if(localStorage.getItem('theme') === 'light'){
+document.body.classList.add('light');
+}
+
+// CLOCK
+
+function updateClock(){
+
+const now = new Date();
+
+document.getElementById('clock').innerHTML =
+now.toLocaleTimeString();
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+// QUOTES
+
+const quotes = [
+
+"Discipline beats motivation.",
+
+"Success starts with daily effort.",
+
+"Study now and enjoy later.",
+
+"Your future is created by what you do today.",
+
+"Dream big. Work hard. Stay focused."
+
+];
+
+function randomQuote(){
+
+const quote =
+quotes[Math.floor(Math.random()*quotes.length)];
+
+document.getElementById('quote').innerHTML = quote;
+
+}
+
+setInterval(randomQuote,4000);
+
+randomQuote();
+
+// MONKEY EFFECT
+
+const monkey = document.getElementById('monkey');
+
+document.getElementById('username')
+.addEventListener('focus',()=>{
+
+monkey.innerHTML = '🐵';
+
+});
+
+document.getElementById('password')
+.addEventListener('focus',()=>{
+
+monkey.innerHTML = '🙈';
+
+});
+
+document.getElementById('password')
+.addEventListener('blur',()=>{
+
+monkey.innerHTML = '🐵';
+
+});
+
+// USER SYSTEM
+
+let currentUser = null;
+
+function loginUser(){
+
+const username =
+document.getElementById('username').value.trim();
+
+const password =
+document.getElementById('password').value.trim();
+
+if(username === '' || password === ''){
+
+alert('Please fill all fields');
+
+return;
+
+}
+
+let users =
+JSON.parse(localStorage.getItem('focusverse_users'))
+|| [];
+
+let user =
+users.find(
+u =>
+u.username === username &&
+u.password === password
+);
+
+if(!user){
+
+user = {
+
+id:'FV'+Math.floor(Math.random()*99999),
+
+username:username,
+
+password:password,
+
+streak:1,
+
+lastLogin:new Date().toDateString(),
+
+notes:'',
+
+history:[]
+
+};
+
+users.push(user);
+
+}else{
+
+const today =
+new Date().toDateString();
+
+if(user.lastLogin !== today){
+
+const yesterday = new Date();
+
+yesterday.setDate(yesterday.getDate()-1);
+
+if(user.lastLogin === yesterday.toDateString()){
+
+user.streak++;
+
+}else{
+
+user.streak = 1;
+
+}
+
+user.lastLogin = today;
+
+}
+
+}
+
+localStorage.setItem(
+'focusverse_users',
+JSON.stringify(users)
+);
+
+currentUser = user;
+
+loadProfile();
+
+if(
+username.toLowerCase() === 'admin' &&
+password === 'focus123'
+){
+
+document.getElementById('adminPanel').style.display = 'block';
+
+showUsers();
+
+}
+
+alert('Login Successful');
+
+}
+
+// PROFILE
+
+function loadProfile(){
+
+document.getElementById('profileSection').style.display = 'block';
+
+document.getElementById('profileName').innerHTML =
+currentUser.username;
+
+document.getElementById('profileId').innerHTML =
+'User ID : ' + currentUser.id;
+
+document.getElementById('streakCount').innerHTML =
+currentUser.streak + ' DAYS 🔥';
+
+document.getElementById('notes').value =
+currentUser.notes || '';
+
+showHistory();
+
+scrollSection('profileSection');
+
+}
+
+// SAVE NOTES
+
+function saveNotes(){
+
+if(!currentUser){
+
+alert('Login first');
+
+return;
+
+}
+
+let users =
+JSON.parse(localStorage.getItem('focusverse_users'))
+|| [];
+
+const index =
+users.findIndex(u => u.id === currentUser.id);
+
+users[index].notes =
+document.getElementById('notes').value;
+
+localStorage.setItem(
+'focusverse_users',
+JSON.stringify(users)
+);
+
+currentUser = users[index];
+
+alert('Notes Saved');
+
+}
+
+// COMPLETE TASK
+
+function completeTask(task){
+
+if(!currentUser){
+
+alert('Login first');
+
+return;
+
+}
+
+let users =
+JSON.parse(localStorage.getItem('focusverse_users'))
+|| [];
+
+const index =
+users.findIndex(u => u.id === currentUser.id);
+
+users[index].history.push({
+
+task:task,
+
+date:new Date().toLocaleString()
+
+});
+
+localStorage.setItem(
+'focusverse_users',
+JSON.stringify(users)
+);
+
+currentUser = users[index];
+
+showHistory();
+
+alert(task + ' Completed');
+
+}
+
+// HISTORY
+
+function showHistory(){
+
+const box =
+document.getElementById('historyBox');
+
+box.innerHTML = '';
+
+if(currentUser.history.length === 0){
+
+box.innerHTML =
+'<p>No tasks completed yet.</p>';
+
+return;
+
+}
+
+currentUser.history
+.slice()
+.reverse()
+.forEach(item => {
+
+box.innerHTML += `
+
+<div class="history-item">
+
+<b>${item.task}</b>
+
+<br><br>
+
+<small>${item.date}</small>
+
+</div>
+
+`;
+
+});
+
+}
+
+// ADMIN
+
+function showUsers(){
+
+const users =
+JSON.parse(localStorage.getItem('focusverse_users'))
+|| [];
+
+document.getElementById('totalUsers').innerHTML =
+users.length;
+
+const list =
+document.getElementById('userList');
+
+list.innerHTML = '';
+
+users.forEach(user => {
+
+list.innerHTML += `
+
+<div class="history-item">
+
+<b>${user.username}</b>
+
+<br><br>
+
+${user.id}
+
+<br><br>
+
+🔥 ${user.streak} Days
+
+</div>
+
+`;
+
+});
+
+}
+
+// PROFILE BUTTON
+
+function showProfile(){
+
+if(currentUser){
+
+scrollSection('profileSection');
+
+}else{
+
+alert('Please login first');
+
+}
+
+}
+
+// SCROLL
+
+function scrollSection(id){
+
+document.getElementById(id)
+.scrollIntoView({
+behavior:'smooth'
+});
+
+}
+
+</script>
+
+</body>
+</html>
