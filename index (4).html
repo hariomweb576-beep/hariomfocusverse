@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FocusVerse | Hariom</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#050505;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:'';
+      position:fixed;
+      width:700px;
+      height:700px;
+      background:#00ff88;
+      filter:blur(180px);
+      opacity:.15;
+      top:-250px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:-1;
+    }
+
+    nav{
+      width:100%;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      backdrop-filter:blur(20px);
+      background:rgba(0,0,0,.6);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    .logo{
+      color:#00ff88;
+      font-size:32px;
+      font-weight:900;
+      letter-spacing:3px;
+    }
+
+    .creator{
+      color:#888;
+      font-size:12px;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:80px 8%;
+    }
+
+    .hero h1{
+      font-size:90px;
+      line-height:1.1;
+      font-weight:900;
+    }
+
+    .green{
+      color:#00ff88;
+    }
+
+    .hero p{
+      max-width:800px;
+      margin:auto;
+      margin-top:30px;
+      color:#aaa;
+      line-height:1.8;
+      font-size:18px;
+    }
+
+    .btns{
+      margin-top:40px;
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    button{
+      border:none;
+      cursor:pointer;
+      transition:.3s;
+      font-weight:700;
+    }
+
+    .btn1{
+      padding:16px 35px;
+      border-radius:16px;
+      background:#00ff88;
+      color:black;
+      box-shadow:0 0 30px rgba(0,255,136,.3);
+    }
+
+    .btn1:hover{
+      transform:translateY(-5px);
+    }
+
+    .btn2{
+      padding:16px 35px;
+      border-radius:16px;
+      background:transparent;
+      color:white;
+      border:1px solid rgba(255,255,255,.15);
+    }
+
+    .btn2:hover{
+      border-color:#00ff88;
+      color:#00ff88;
+    }
+
+    .section{
+      padding:100px 8%;
+    }
+
+    .title{
+      font-size:50px;
+      margin-bottom:50px;
+      font-weight:800;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:30px;
+      padding:35px;
+      backdrop-filter:blur(15px);
+      transition:.4s;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      border-color:#00ff88;
+    }
+
+    .icon{
+      width:60px;
+      height:60px;
+      border-radius:18px;
+      background:rgba(0,255,136,.1);
+      border:1px solid rgba(0,255,136,.2);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:28px;
+      margin-bottom:20px;
+      color:#00ff88;
+    }
+
+    .card p{
+      color:#aaa;
+      line-height:1.7;
+      margin-top:10px;
+    }
+
+    .clock-box{
+      text-align:center;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:40px;
+      padding:60px;
+    }
+
+    #clock{
+      font-size:90px;
+      color:#00ff88;
+      margin-top:20px;
+      font-weight:900;
+    }
+
+    .login-box{
+      max-width:500px;
+      margin:auto;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:35px;
+      padding:40px;
+      text-align:center;
+    }
+
+    .monkey{
+      font-size:90px;
+      margin:20px 0;
+      transition:.3s;
+    }
+
+    input, textarea{
+      width:100%;
+      padding:18px;
+      margin-top:18px;
+      border:none;
+      outline:none;
+      border-radius:18px;
+      background:#111;
+      color:white;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    input:focus,
+    textarea:focus{
+      border-color:#00ff88;
+    }
+
+    textarea{
+      min-height:200px;
+      resize:none;
+    }
+
+    .task{
+      background:#111;
+      padding:18px;
+      border-radius:18px;
+      margin-top:15px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .circle{
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      border:2px solid #00ff88;
+    }
+
+    .streak{
+      text-align:center;
+      font-size:70px;
+      color:#00ff88;
+      font-weight:900;
+      margin-top:20px;
+    }
+
+    #adminPanel{
+      display:none;
+      animation:fade .5s ease;
+    }
+
+    @keyframes fade{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    footer{
+      padding:40px 8%;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:#777;
+    }
+
+    @media(max-width:900px){
+      .hero h1{
+        font-size:60px;
+      }
+
+      #clock{
+        font-size:55px;
+      }
+    }
+
+    @media(max-width:600px){
+      .hero h1{
+        font-size:42px;
+      }
+
+      .title{
+        font-size:35px;
+      }
+
+      #clock{
+        font-size:40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div>
+      <div class="logo">FOCUSVERSE</div>
+      <div class="creator">Created by Hariom</div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <p class="green" style="letter-spacing:6px;text-transform:uppercase;">
+        Futuristic Productivity Platform
+      </p>
+
+      <h1>
+        STUDY.<br>
+        FOCUS.<br>
+        WIN.
+      </h1>
+
+      <p>
+        A futuristic aesthetic productivity website with login system,
+        private notes, daily streak, live clock, focus quotes,
+        and admin dashboard.
+      </p>
+
+      <div class="btns">
+        <button class="btn1">Get Started</button>
+        <button class="btn2">Explore</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="title">Awesome <span class="green">Features</span></h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">🌗</div>
+        <h3>Dark / Light Vibes</h3>
+        <p>Premium futuristic aesthetic design with smooth neon glow.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🔥</div>
+        <h3>Daily Streak</h3>
+        <p>Maintain your productivity streak and stay consistent.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📝</div>
+        <h3>Private Notes</h3>
+        <p>Your notes and tasks remain private and secure.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🔒</div>
+        <h3>Secure Login</h3>
+        <p>Users can login and save their productivity progress.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="clock-box">
+      <p class="green" style="letter-spacing:5px;text-transform:uppercase;">
+        Live Clock
+      </p>
+
+      <div id="clock">00:00:00</div>
+
+      <p style="margin-top:20px;color:#aaa;">
+        “Discipline beats talent.”
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="title">Login <span class="green">Portal</span></h2>
+
+    <div class="login-box">
+
+      <div class="monkey" id="monkey">🐵</div>
+
+      <input type="text" id="username" placeholder="Enter Username">
+
+      <input type="password" id="password" placeholder="Enter Password">
+
+      <button class="btn1" style="margin-top:20px;width:100%;" onclick="loginUser()">
+        Login Securely
+      </button>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="title">Daily <span class="green">Streak</span></h2>
+
+    <div class="clock-box">
+      <div class="streak" id="streakCount">0 DAYS 🔥</div>
+
+      <p style="margin-top:20px;color:#aaa;line-height:1.8;">
+        Keep learning daily and build your consistency.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="title">Quick <span class="green">Notes</span></h2>
+
+    <div class="card">
+      <textarea id="notes" placeholder="Write your study notes here..."></textarea>
+
+      <button class="btn1" style="margin-top:20px;" onclick="saveNotes()">
+        Save Notes
+      </button>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="title">Daily <span class="green">Tasks</span></h2>
+
+    <div class="card">
+
+      <div class="task">
+        <p>Complete Math Revision</p>
+        <div class="circle"></div>
+      </div>
+
+      <div class="task">
+        <p>Practice Coding</p>
+        <div class="circle"></div>
+      </div>
+
+      <div class="task">
+        <p>Read GK Notes</p>
+        <div class="circle"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="adminPanel">
+    <h2 class="title">Hariom <span class="green">Private Admin</span></h2>
+
+    <div class="card">
+      <h3 style="font-size:32px;color:#00ff88;">Hariom Private Admin Panel</h3>
+      <p style="margin-top:15px;color:#aaa;line-height:1.8;">
+        Only admin can see usernames and IDs.
+      </p>
+
+      <h3 style="margin-top:30px;">Total Users</h3>
+      <p id="totalUsers">0 Users</p>
+    </div>
+
+    <div class="card" style="margin-top:30px;">
+      <h3>Registered Users</h3>
+
+      <div id="userList"></div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 FocusVerse — Created by Hariom
+  </footer>
+
+  <script>
+
+    // LIVE CLOCK
+
+    function updateClock(){
+      const now = new Date();
+
+      let h = now.getHours().toString().padStart(2,'0');
+      let m = now.getMinutes().toString().padStart(2,'0');
+      let s = now.getSeconds().toString().padStart(2,'0');
+
+      document.getElementById('clock').innerHTML = `${h}:${m}:${s}`;
+    }
+
+    setInterval(updateClock,1000);
+    updateClock();
+
+
+    // MONKEY EFFECT
+
+    const monkey = document.getElementById('monkey');
+
+    document.getElementById('username').addEventListener('focus',()=>{
+      monkey.innerHTML = '🐵';
+    });
+
+    document.getElementById('password').addEventListener('focus',()=>{
+      monkey.innerHTML = '🙈';
+    });
+
+
+    // SAVE NOTES
+
+    function saveNotes(){
+      const notes = document.getElementById('notes').value;
+
+      localStorage.setItem('focusverse_notes',notes);
+
+      alert('Notes Saved Successfully');
+    }
+
+    document.getElementById('notes').value =
+      localStorage.getItem('focusverse_notes') || '';
+
+
+    // USER STREAK SYSTEM
+
+    function updateStreak(){
+
+      let streakData = JSON.parse(localStorage.getItem('focusverse_streak'));
+
+      const today = new Date().toDateString();
+
+      if(!streakData){
+
+        streakData = {
+          streak:0,
+          lastLogin:''
+        };
+      }
+
+      if(streakData.lastLogin !== today){
+
+        streakData.streak += 1;
+        streakData.lastLogin = today;
+
+        localStorage.setItem('focusverse_streak',JSON.stringify(streakData));
+      }
+
+      document.getElementById('streakCount').innerHTML =
+      streakData.streak + ' DAYS 🔥';
+    }
+
+
+    // LOGIN + ADMIN SYSTEM
+
+    function loginUser(){
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if(username === '' || password === ''){
+        alert('Please fill all fields');
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem('focusverse_users')) || [];
+
+      const existingUser = users.find(u => u.name === username);
+
+      if(!existingUser){
+
+        const user = {
+          id:'FV'+Math.floor(Math.random()*99999),
+          name:username
+        };
+
+        users.push(user);
+
+        localStorage.setItem('focusverse_users',JSON.stringify(users));
+      }
+
+      updateStreak();
+
+      // ADMIN LOGIN
+
+      if(username.toLowerCase() === 'hariom' && password === 'focusverse123'){
+
+        document.getElementById('adminPanel').style.display = 'block';
+
+        showUsers();
+
+        alert('Welcome Hariom Admin');
+
+        window.scrollTo({
+          top: document.getElementById('adminPanel').offsetTop,
+          behavior: 'smooth'
+        });
+
+      }else{
+
+        document.getElementById('adminPanel').style.display = 'none';
+
+        alert('User Login Successful');
+      }
+    }
+
+
+    // SHOW USERS ONLY FOR ADMIN
+
+    function showUsers(){
+
+      let users = JSON.parse(localStorage.getItem('focusverse_users')) || [];
+
+      document.getElementById('totalUsers').innerHTML = users.length + ' Users Registered';
+
+      let userList = document.getElementById('userList');
+
+      userList.innerHTML = '';
+
+      users.forEach((user)=>{
+
+        userList.innerHTML += `
+          <div class="task">
+            <p>${user.id} — ${user.name}</p>
+            <div class="circle"></div>
+          </div>
+        `;
+
+      });
+    }
+
+  </script>
+
+</body>
+</html>
